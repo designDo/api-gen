@@ -41,17 +41,17 @@ MyService().getUser("user_id").asStream().listen((user) {
   });
 ```
 
-#注意
+# 注意
 
 1. 这里对Retrofit -->http.dart 里面的注解方法做了一些阉割。
 去掉了baseurl的定义，将Headers类替换为HEADERS类，原因是和dio导包冲突。
 2. 将抽象接口类和实现类写在一个文件中，上下关系，不然无法将生成的代码放在实现类中。
 3. AndroidStudio bug ,将Flutter项目下的.idea文件夹删除，重新打开项目，在flutter环境中AndroidStudio
 **Generate** --> **implement methods** 将不可用
-4. **要么适应生成的代码，要么修改生成的代码。**
+4. **要么适应生成的代码，要么修改生成代码的代码。**
 
 
-#注解类 直接Copy到项目中即可
+# 注解类 直接Copy到项目中即可
 ```
 
 class HttpMethod {
