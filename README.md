@@ -1,5 +1,5 @@
 # api-gen
-基于retrofit-dart RestAPI开发的 IDEA 插件，用来生成代码
+基于retrofit-dart RestAPI开发的 IDEA 插件，用来生成代码 https://pub.dev/packages/retrofit
 
 **由于dart没有反射机制，不能像原生一样实现Retrofit那样简单，而是要借助一些工具提高开发效率。**
 **Retrofit官方提供了一种方式，[Retrofit](https://pub.dev/packages/retrofit)**
