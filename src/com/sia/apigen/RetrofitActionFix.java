@@ -97,8 +97,20 @@ public class RetrofitActionFix {
                 }
             }
 
-            //获取第一个
-            FunctionElement httpMethod = httpMethodElements.get(0);
+            //获取PATH参数
+            FunctionElement httpMethod = new FunctionElement();
+            FunctionElement pathMethod = new FunctionElement();
+            for (FunctionElement httpMethodElement : httpMethodElements) {
+                if (!httpMethodElement.annotation.equals(FunctionElement.PATH)) {
+                    //其他类型注解
+                    httpMethod = httpMethodElement;
+                } else {
+                    //获取到PATH注解
+                    pathMethod = httpMethodElement;
+                }
+            }
+
+            String baseUrl = pathMethod.annotationValue;
             String path = httpMethod.annotationValue;
             if (pathNames.size() > 0) {
                 for (String pathName : pathNames) {
@@ -111,15 +123,22 @@ public class RetrofitActionFix {
                 }
             }
 
+            //添加baseUrl
+            if (baseUrl.length() > 0) {
+                template.addTextSegment("final baseUrl = '" + baseUrl + "';\n");
+            }
             template.addTextSegment(getResponseType(returnString));
             template.addTextSegment(" _result = await DioManager().requestDio(");
             template.addTextSegment("'" + path + "', \n");
+            if (baseUrl.length() > 0) {
+                template.addTextSegment("baseUrl: baseUrl,\n");
+            }
             template.addTextSegment("queryParameters: queryParameters,\n options: RequestOptions(");
             template.addTextSegment("method: '" + httpMethod.annotation + "',");
             template.addTextSegment("headers: _headers");
-            template.addTextSegment("),");
-            template.addTextSegment(" data: _data,");
-            template.addTextSegment(" defaultValue: " + getDefaultResponseValue(returnString) + ");");
+            template.addTextSegment("),\n");
+            template.addTextSegment(" data: _data,\n");
+            template.addTextSegment(" defaultValue: " + getDefaultResponseValue(returnString) + ");\n");
             template.addTextSegment(getReturnValue(returnString));
 
         }

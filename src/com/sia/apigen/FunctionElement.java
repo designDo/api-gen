@@ -1,6 +1,7 @@
 package com.sia.apigen;
 
 public class FunctionElement {
+    public static final String PATH = "PATH";
     public static final String POST = "POST";
     public static final String GET = "GET";
     public static final String PATCH = "PATCH";
@@ -10,7 +11,7 @@ public class FunctionElement {
 
     // @ POST('/tasks' )
     //POST
-    public String annotation;
+    public String annotation = "";
     // /tasks
-    public String annotationValue;
+    public String annotationValue = "";
 }

@@ -80,11 +80,11 @@ public class AndroidDialog extends JDialog {
         }
         String type = first.substring(first.indexOf(")")+1);
         System.out.println(type);*/
-        String s = "/tasks/{id}";
+        String s = "";
 
         String a = "id";
 
         System.out.println(s.replace("{id}","$id"));
-
+        System.out.println(s.substring(s.lastIndexOf("/") +1));
     }
 }
